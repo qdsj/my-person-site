@@ -6,6 +6,7 @@ on:
         paths:
             - "frontend/**"
             - "frontend/Dockerfile"
+            - ".github/workflows/deploy-frontend.yml"
             - "package.json"
             - "pnpm-lock.yaml"
             - "pnpm-workspace.yaml"
