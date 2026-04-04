@@ -14,6 +14,7 @@ Run these from the repository root:
 pnpm dev:web
 pnpm dev:api
 pnpm build:web
+pnpm build:api
 pnpm lint:web
 pnpm lint:api
 ```
@@ -43,3 +44,19 @@ pnpm lint:api
 - The frontend currently uses bilingual mock content so the UI can be developed before the real API is connected.
 - The backend currently returns placeholder data and is ready to be wired to PostgreSQL, `pgvector`, and S3-compatible storage.
 - See [DocPlan/00-overview.md](./DocPlan/00-overview.md) for the implementation map.
+
+## Deployment
+
+- `frontend/Dockerfile`: Next.js standalone production image
+- `backend/Dockerfile`: NestJS production image
+- `.github/workflows/deploy-frontend.yml`: build, push, and deploy the frontend container
+- `.github/workflows/deploy-backend.yml`: build, push, and deploy the backend container
+- `deploy/nginx/my-person-site.conf.example`: sample same-domain reverse proxy config
+
+### Required GitHub Secrets
+
+- `DOCKER_NAME`
+- `DOCKER_TOKEN`
+- `SERVER_HOST`
+- `SERVER_USER_NAME`
+- `SERVER_KEY`

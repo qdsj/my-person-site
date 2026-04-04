@@ -4,8 +4,7 @@ import { useState, useTransition } from "react";
 import { SiteShell } from "@/components/site-shell";
 import { useLanguage } from "@/components/language-provider";
 
-const AUTH_ENDPOINT =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:3001/api/v1";
+const AUTH_ENDPOINT = process.env.NEXT_PUBLIC_API_BASE_PATH ?? "/api/v1";
 
 export function AdminLoginPage() {
   const { locale } = useLanguage();

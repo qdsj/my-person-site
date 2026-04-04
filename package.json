@@ -1,10 +1,12 @@
 {
   "name": "my-person-site-monorepo",
   "private": true,
+  "packageManager": "pnpm@10.12.1",
   "scripts": {
     "dev:web": "pnpm --dir frontend dev",
     "dev:api": "pnpm --dir backend start:dev",
     "build:web": "pnpm --dir frontend build",
+    "build:api": "pnpm --dir backend build",
     "lint:web": "pnpm --dir frontend lint",
     "lint:api": "pnpm --dir backend lint"
   }

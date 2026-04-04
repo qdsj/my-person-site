@@ -1,0 +1,13 @@
+.git
+.github
+.next
+.pnpm-store
+DocPlan
+node_modules
+backend/dist
+backend/node_modules
+frontend/.next
+frontend/node_modules
+deploy_bundle
+frontend-test.tar.gz
+**/.DS_Store
