@@ -3,6 +3,12 @@ name: Backend Docker Deploy
 on:
   push:
     branches: [main, develop]
+    paths:
+      - "backend/**"
+      - "backend/Dockerfile"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
 
 jobs:
   deploy:
