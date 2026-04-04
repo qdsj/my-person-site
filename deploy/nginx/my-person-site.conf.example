@@ -19,7 +19,11 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
   }
 
-  location / {
+  location = /person-site {
+    return 301 /person-site/;
+  }
+
+  location /person-site/ {
     proxy_pass http://my_person_site_frontend_prod;
     proxy_http_version 1.1;
     proxy_set_header Host $host;
