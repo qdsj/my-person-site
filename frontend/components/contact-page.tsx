@@ -2,7 +2,7 @@
 
 import { SiteShell } from "@/components/site-shell";
 import { useLanguage } from "@/components/language-provider";
-import { contactPoints, getLocalizedText } from "@/lib/site-content";
+import { collaborationNotes, contactPoints, getLocalizedText } from "@/lib/site-content";
 
 export function ContactPage() {
   const { locale } = useLanguage();
@@ -10,10 +10,10 @@ export function ContactPage() {
   return (
     <SiteShell
       kicker={{ zh: "联系与合作", en: "Contact and collaboration" }}
-      title={{ zh: "给访客一个清晰的下一步。", en: "Give visitors a clear next step." }}
+      title={{ zh: "如果要合作，这一页应该让人快速知道怎么联系你。", en: "If someone wants to collaborate, this page should make the next step obvious." }}
       description={{
-        zh: "联系页保持轻量，但要足够清楚。v1 以邮箱和社交入口为主，避免过早引入复杂表单流程。",
-        en: "Keep the contact page light but clear. Version one focuses on email and social entry points instead of introducing a complex form workflow too early.",
+        zh: "当前版本以邮箱、电话和掘金为主，先把高频沟通入口放清楚。后续如果接表单，也可以由后端统一处理验证、通知和线索沉淀。",
+        en: "The current version focuses on email, phone, and Juejin so the most useful contact paths are obvious first. A form can be added later and handled by the backend.",
       }}
     >
       <div className="grid gap-5 sm:gap-6 lg:grid-cols-[0.95fr_1.05fr]">
@@ -36,24 +36,12 @@ export function ContactPage() {
 
         <aside className="rounded-[24px] border border-black/8 bg-[var(--surface)] p-5 sm:rounded-[28px] sm:p-7">
           <h2 className="display-font text-2xl sm:text-3xl">
-            {locale === "zh" ? "适合放在这里的信息" : "What belongs here"}
+            {locale === "zh" ? "适合合作前先对齐的事情" : "What to align on before collaborating"}
           </h2>
           <ul className="mt-4 space-y-4 leading-7 text-black/65">
-            <li>
-              {locale === "zh"
-                ? "你擅长的合作类型，比如咨询、顾问、全职机会或创作合作。"
-                : "The collaboration formats you are open to, such as advisory work, product building, or creative partnerships."}
-            </li>
-            <li>
-              {locale === "zh"
-                ? "希望对方联系前先了解的内容，例如项目方向、时间窗口或预算范围。"
-                : "Anything you want people to understand before they reach out, such as scope, timing, or budget range."}
-            </li>
-            <li>
-              {locale === "zh"
-                ? "若后续增加表单，可以由 NestJS API 统一做验证、限流与通知。"
-                : "If you add a form later, the NestJS API can handle validation, rate limiting, and notifications."}
-            </li>
+            {collaborationNotes.map((item) => (
+              <li key={item.zh}>{getLocalizedText(item, locale)}</li>
+            ))}
           </ul>
         </aside>
       </div>

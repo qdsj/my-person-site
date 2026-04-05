@@ -32,7 +32,7 @@ export function SiteShell({
                   href="/"
                   className="display-font text-[2rem] leading-none text-[var(--accent-strong)] sm:text-3xl"
                 >
-                  Chengtong Xue
+                  Hao Cheng
                 </Link>
                 <div className="flex shrink-0 rounded-full border border-black/10 bg-white/70 p-1 text-sm lg:hidden">
                   {(["zh", "en"] as const).map((option) => (
@@ -53,28 +53,12 @@ export function SiteShell({
               </div>
               <p className="max-w-2xl text-sm leading-6 text-black/60">
                 {locale === "zh"
-                  ? "个人品牌站 / 作品展示 / AI 分身 / 单管理员后台"
-                  : "Personal brand / portfolio / AI persona / single-admin CMS"}
+                  ? "前端工程 / AI Agent / 技术分享 / 摄影表达"
+                  : "Frontend engineering / AI agents / technical writing / photography"}
               </p>
             </div>
-            <div className="flex w-full flex-col gap-3 lg:w-auto lg:items-end">
-              <div className="hidden rounded-full border border-black/10 bg-white/70 p-1 text-sm lg:flex lg:self-end">
-                {(["zh", "en"] as const).map((option) => (
-                  <button
-                    key={option}
-                    type="button"
-                    onClick={() => setLocale(option)}
-                    className={`min-h-9 rounded-full px-3 py-1.5 text-xs transition sm:min-h-10 sm:px-3.5 sm:py-2 sm:text-sm ${
-                      locale === option
-                        ? "bg-[var(--secondary)] text-white"
-                        : "text-black/60 hover:bg-black/5"
-                    }`}
-                  >
-                    {option.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-              <nav className="grid w-full grid-cols-3 gap-2 rounded-[24px] border border-black/10 bg-white/70 p-2 lg:flex lg:w-auto lg:flex-wrap lg:justify-end lg:rounded-full lg:p-1">
+            <div className="flex w-full flex-col gap-3 lg:w-auto lg:flex-row lg:items-start lg:justify-end">
+              <nav className="grid w-full grid-cols-3 gap-2 rounded-[24px] border border-black/10 bg-white/70 p-2 lg:w-auto lg:grid-cols-none lg:auto-cols-max lg:grid-flow-col lg:rounded-full lg:p-1">
                 {navItems.map((item) => {
                   const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
                   return (
@@ -92,6 +76,22 @@ export function SiteShell({
                   );
                 })}
               </nav>
+              <div className="hidden rounded-full border border-black/10 bg-white/70 p-1 text-sm lg:flex lg:shrink-0">
+                {(["zh", "en"] as const).map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setLocale(option)}
+                    className={`min-h-9 rounded-full px-3 py-1.5 text-xs transition sm:min-h-10 sm:px-3.5 sm:py-2 sm:text-sm ${
+                      locale === option
+                        ? "bg-[var(--secondary)] text-white"
+                        : "text-black/60 hover:bg-black/5"
+                    }`}
+                  >
+                    {option.toUpperCase()}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </header>
@@ -115,13 +115,13 @@ export function SiteShell({
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <p className="text-safe-wrap leading-6">
               {locale === "zh"
-                ? "Next.js 前端位于 frontend/，Nest 风格 API 骨架位于 backend/。"
-                : "The Next.js frontend lives in frontend/, and the Nest-style API scaffold lives in backend/."}
+                ? "这个站点用于承载我的项目经历、AI 能力、技术分享和摄影内容。"
+                : "This site brings together my project work, AI capabilities, technical writing, and photography."}
             </p>
             <p className="text-safe-wrap leading-6">
               {locale === "zh"
-                ? "当前为可扩展骨架，后续接入真实数据库、对象存储和模型接口。"
-                : "This is an extensible scaffold ready for real database, storage, and model integrations."}
+                ? "后续会继续接入真实知识库、媒体资源和更完整的 AI Agent 工作流。"
+                : "It will keep expanding with a real knowledge base, media assets, and a fuller AI agent workflow."}
             </p>
           </div>
         </footer>

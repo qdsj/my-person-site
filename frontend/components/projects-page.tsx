@@ -11,10 +11,10 @@ export function ProjectsPage() {
   return (
     <SiteShell
       kicker={{ zh: "项目与成果", en: "Projects and outcomes" }}
-      title={{ zh: "用更完整的上下文展示你做过的事。", en: "Show the work with enough context to matter." }}
+      title={{ zh: "这些项目定义了我做前端和 AI 产品的方式。", en: "These projects define how I build frontend systems and AI products." }}
       description={{
-        zh: "项目页是个人品牌站的说服力中枢。这里展示代表项目、你的职责、产出和影响，也为 AI 对话提供可靠的事实来源。",
-        en: "Projects are the persuasion layer of the site. They show your role, your output, and the impact behind the work while feeding reliable facts into the AI experience.",
+        zh: "这里汇总了企业门户、组件库、SSG 文档脚手架、在线 Playground 和 AI 助手等代表项目，重点展示我的职责边界、技术判断和最终产出。",
+        en: "This page brings together the enterprise portal, component library, SSG documentation starter, online playground, and AI assistant work to show ownership, technical judgment, and concrete outcomes.",
       }}
     >
       <div className="space-y-5 sm:space-y-6">

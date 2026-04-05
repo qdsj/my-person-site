@@ -59,12 +59,12 @@ export function ProjectDetailPage({ project }: { project: Project }) {
 
           <div className="rounded-[24px] border border-black/8 bg-white/80 p-5 sm:rounded-[28px] sm:p-6">
             <p className="display-font text-xl sm:text-2xl">
-              {locale === "zh" ? "下一步可接入" : "Ready to plug in next"}
+              {locale === "zh" ? "这个项目说明了什么" : "What this project signals"}
             </p>
             <ul className="mt-4 space-y-3 text-black/65">
-              <li>{locale === "zh" ? "真实项目封面与媒体资源" : "Real cover assets and media"}</li>
-              <li>{locale === "zh" ? "后台多语言编辑表单" : "Bilingual admin editing forms"}</li>
-              <li>{locale === "zh" ? "AI 知识库的项目专属文档" : "Project-specific AI knowledge docs"}</li>
+              <li>{locale === "zh" ? "复杂产品问题可以被拆成稳定的工程方案" : "Complex product problems can be turned into stable engineering systems"}</li>
+              <li>{locale === "zh" ? "我更关注长期复用，而不只是单次交付" : "I optimize for reuse and long-term leverage, not just one-off delivery"}</li>
+              <li>{locale === "zh" ? "这些实践也能成为 AI 知识库里的可靠事实来源" : "These projects also become reliable source material for the AI knowledge base"}</li>
             </ul>
             <Link
               href="/chat"

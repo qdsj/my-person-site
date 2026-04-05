@@ -10,10 +10,10 @@ export function MediaPage() {
   return (
     <SiteShell
       kicker={{ zh: "图片与视频", en: "Images and video" }}
-      title={{ zh: "把静态资料变成更有感受力的表达层。", en: "Turn static content into a more sensory presentation layer." }}
+      title={{ zh: "媒体内容会把技术能力和摄影表达连接在一起。", en: "Media is where product demos and photography start to meet." }}
       description={{
-        zh: "媒体页展示未来接入对象存储后的公共体验形态，包括图片卡片、视频条目、封面和摘要信息。",
-        en: "The media page previews how public-facing media will look once object storage is connected, including image cards, video entries, covers, and summaries.",
+        zh: "这里既会放摄影作品，也会放 AI Agent、知识库和语音交互相关的产品演示，作为更直观的能力展示层。",
+        en: "This space will hold both photography work and product demos for AI agents, knowledge flows, and voice interaction so the capabilities are easier to feel.",
       }}
     >
       <div className="grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">

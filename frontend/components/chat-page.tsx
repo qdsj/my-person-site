@@ -19,8 +19,8 @@ export function ChatPage() {
       role: "assistant",
       content:
         locale === "zh"
-          ? "你好，我是这个网站里代表你的 AI 分身。你可以问我你的经历、项目、风格和合作方式。"
-          : "Hi, I am the AI persona behind this site. Ask me about your background, projects, style, or how you collaborate.",
+          ? "你好，我会基于你的简历、项目资料、技术分享和摄影方向来回答问题，也可以重点介绍 AI Agent 的能力设计。"
+          : "Hi, I can answer from your resume, project notes, technical writing, and photography direction, with extra depth on the AI agent capability stack.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -91,10 +91,10 @@ export function ChatPage() {
   return (
     <SiteShell
       kicker={{ zh: "AI 分身问答", en: "AI persona chat" }}
-      title={{ zh: "让访客通过对话理解你。", en: "Let visitors understand you through conversation." }}
+      title={{ zh: "让访客通过对话快速理解你的能力边界。", en: "Let visitors understand your capabilities through conversation." }}
       description={{
-        zh: "这个页面已经准备好承接 `POST /api/v1/public/chat`。真实服务接入后，前端将把问题、语言和会话上下文发到 NestJS API，再由 RAG 工作流生成回答。",
-        en: "This page is ready to call `POST /api/v1/public/chat`. Once the real service is connected, the frontend will send the message, locale, and session context to the NestJS API and let the RAG workflow respond.",
+        zh: "页面已经准备好承接 `POST /api/v1/public/chat`。真实服务接入后，这里会基于已上传资料、项目信息和个人知识库进行检索增强问答，并进一步支持语音交互与流式组件输出。",
+        en: "This page is ready to call `POST /api/v1/public/chat`. Once the real service is connected, it will answer from uploaded materials, project data, and a personal knowledge base, with room for voice interaction and streaming UI components.",
       }}
     >
       <div className="grid gap-6 sm:gap-8 lg:grid-cols-[0.85fr_1.15fr]">
@@ -124,8 +124,8 @@ export function ChatPage() {
             <p className="mt-2">POST {API_BASE}/public/chat</p>
             <p className="mt-3">
               {locale === "zh"
-                ? "请求体建议包含 `message`、`locale`、`sessionId`，响应返回 `answer`、`sessionId` 和调试信息。"
-                : "The request should include `message`, `locale`, and `sessionId`, and the response should return `answer`, `sessionId`, and debug metadata."}
+                ? "请求体建议包含 `message`、`locale`、`sessionId`，并允许附带语音、多模态文件或会话上下文；响应返回 `answer`、`sessionId`、引用来源和流式状态。"
+                : "The request should include `message`, `locale`, and `sessionId`, and can later carry voice, multimodal files, or conversation context; the response should return `answer`, `sessionId`, source metadata, and streaming state."}
             </p>
           </div>
         </aside>
@@ -162,14 +162,17 @@ export function ChatPage() {
               rows={4}
               placeholder={
                 locale === "zh"
-                  ? "比如：你最想让别人先理解你哪一部分？"
-                  : "For example: what do you want people to understand about you first?"
+                  ? "比如：你做过的 AI Agent 能支持哪些能力？"
+                  : "For example: what capabilities do your AI agents support?"
               }
               className="min-h-32 w-full rounded-[20px] border border-black/10 bg-[var(--surface)] px-4 py-4 outline-none transition focus:border-[var(--accent)] sm:rounded-[24px] sm:px-5"
             />
             <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between">
               <p className="text-safe-wrap text-sm leading-6 text-black/50">
-                {error ?? (locale === "zh" ? "接入后端后可切换为真实检索回答。" : "Wire the backend to switch this to real retrieval-based answers.")}
+                {error ??
+                  (locale === "zh"
+                    ? "接入后端后可切换为基于简历、项目资料和知识库的真实检索回答。"
+                    : "Wire the backend to switch this to retrieval-backed answers grounded in the resume, projects, and knowledge base.")}
               </p>
               <button
                 type="submit"

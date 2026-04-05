@@ -3,8 +3,9 @@ import { LanguageProvider } from "@/components/language-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Personal Site Monorepo",
-  description: "A bilingual personal brand site powered by Next.js and a Nest-style API.",
+  title: "程豪 | 前端工程师与 AI Agent 开发者",
+  description:
+    "程豪的个人站点，展示前端工程、AI Agent 项目、技术分享与摄影内容。",
 };
 
 export default function RootLayout({
