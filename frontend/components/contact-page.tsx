@@ -16,24 +16,26 @@ export function ContactPage() {
         en: "Keep the contact page light but clear. Version one focuses on email and social entry points instead of introducing a complex form workflow too early.",
       }}
     >
-      <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+      <div className="grid gap-5 sm:gap-6 lg:grid-cols-[0.95fr_1.05fr]">
         <section className="space-y-4">
           {contactPoints.map((point, index) => (
             <article
               key={point.value}
-              className="animated-rise rounded-[28px] border border-black/8 bg-white/80 p-6"
+              className="animated-rise rounded-[24px] border border-black/8 bg-white/80 p-5 sm:rounded-[28px] sm:p-6"
               style={{ animationDelay: `${index * 0.08}s` }}
             >
               <p className="text-sm uppercase tracking-[0.2em] text-black/45">
                 {getLocalizedText(point.label, locale)}
               </p>
-              <p className="mt-3 text-xl text-black/75">{point.value}</p>
+              <p className="text-safe-wrap mt-3 text-lg leading-7 text-black/75 sm:text-xl">
+                {point.value}
+              </p>
             </article>
           ))}
         </section>
 
-        <aside className="rounded-[28px] border border-black/8 bg-[var(--surface)] p-7">
-          <h2 className="display-font text-3xl">
+        <aside className="rounded-[24px] border border-black/8 bg-[var(--surface)] p-5 sm:rounded-[28px] sm:p-7">
+          <h2 className="display-font text-2xl sm:text-3xl">
             {locale === "zh" ? "适合放在这里的信息" : "What belongs here"}
           </h2>
           <ul className="mt-4 space-y-4 leading-7 text-black/65">

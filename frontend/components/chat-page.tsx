@@ -97,19 +97,19 @@ export function ChatPage() {
         en: "This page is ready to call `POST /api/v1/public/chat`. Once the real service is connected, the frontend will send the message, locale, and session context to the NestJS API and let the RAG workflow respond.",
       }}
     >
-      <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+      <div className="grid gap-6 sm:gap-8 lg:grid-cols-[0.85fr_1.15fr]">
         <aside className="space-y-4">
-          <div className="rounded-[28px] border border-black/8 bg-white/78 p-6">
-            <p className="display-font text-2xl">
+          <div className="rounded-[24px] border border-black/8 bg-white/78 p-5 sm:rounded-[28px] sm:p-6">
+            <p className="display-font text-xl sm:text-2xl">
               {locale === "zh" ? "推荐提问" : "Suggested prompts"}
             </p>
-            <div className="mt-4 flex flex-wrap gap-3">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               {chatPrompts.map((prompt) => (
                 <button
                   key={prompt.id}
                   type="button"
                   onClick={() => setInput(getLocalizedText(prompt.message, locale))}
-                  className="rounded-full border border-black/10 px-4 py-2 text-left text-sm hover:bg-black/5"
+                  className="min-h-11 w-full rounded-full border border-black/10 px-4 py-2 text-left text-sm leading-5 hover:bg-black/5 sm:w-auto"
                 >
                   {getLocalizedText(prompt.label, locale)}
                 </button>
@@ -117,7 +117,7 @@ export function ChatPage() {
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-black/8 bg-[var(--surface)] p-6 text-sm leading-7 text-black/65">
+          <div className="text-safe-wrap rounded-[24px] border border-black/8 bg-[var(--surface)] p-5 text-sm leading-7 text-black/65 sm:rounded-[28px] sm:p-6">
             <p className="font-medium text-black/55">
               {locale === "zh" ? "当前接口约定" : "Current API contract"}
             </p>
@@ -130,12 +130,12 @@ export function ChatPage() {
           </div>
         </aside>
 
-        <section className="rounded-[32px] border border-black/8 bg-white/82 p-6">
+        <section className="rounded-[28px] border border-black/8 bg-white/82 p-5 sm:rounded-[32px] sm:p-6">
           <div className="space-y-4">
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
-                className={`rounded-[24px] px-5 py-4 leading-7 ${
+                className={`text-safe-wrap rounded-[20px] px-4 py-3 leading-7 sm:rounded-[24px] sm:px-5 sm:py-4 ${
                   message.role === "assistant"
                     ? "bg-[var(--accent-soft)] text-[var(--accent-strong)]"
                     : "bg-black/4 text-black/75"
@@ -155,7 +155,7 @@ export function ChatPage() {
             ))}
           </div>
 
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-5 space-y-4 sm:mt-6">
             <textarea
               value={input}
               onChange={(event) => setInput(event.target.value)}
@@ -165,16 +165,16 @@ export function ChatPage() {
                   ? "比如：你最想让别人先理解你哪一部分？"
                   : "For example: what do you want people to understand about you first?"
               }
-              className="w-full rounded-[24px] border border-black/10 bg-[var(--surface)] px-5 py-4 outline-none transition focus:border-[var(--accent)]"
+              className="min-h-32 w-full rounded-[20px] border border-black/10 bg-[var(--surface)] px-4 py-4 outline-none transition focus:border-[var(--accent)] sm:rounded-[24px] sm:px-5"
             />
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <p className="text-sm text-black/50">
+            <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between">
+              <p className="text-safe-wrap text-sm leading-6 text-black/50">
                 {error ?? (locale === "zh" ? "接入后端后可切换为真实检索回答。" : "Wire the backend to switch this to real retrieval-based answers.")}
               </p>
               <button
                 type="submit"
                 disabled={isPending}
-                className="rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white disabled:opacity-60 sm:w-auto"
               >
                 {isPending
                   ? locale === "zh"

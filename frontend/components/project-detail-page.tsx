@@ -14,15 +14,15 @@ export function ProjectDetailPage({ project }: { project: Project }) {
       title={project.title}
       description={project.summary}
     >
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <section className="rounded-[28px] border border-black/8 bg-white/78 p-7">
+      <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <section className="rounded-[24px] border border-black/8 bg-white/78 p-5 sm:rounded-[28px] sm:p-7">
           <p className="text-sm uppercase tracking-[0.18em] text-black/45">
             {project.year}
           </p>
-          <h2 className="display-font mt-3 text-3xl text-[var(--accent-strong)]">
+          <h2 className="display-font mt-3 text-2xl text-[var(--accent-strong)] sm:text-3xl">
             {getLocalizedText(project.title, locale)}
           </h2>
-          <p className="mt-4 leading-8 text-black/65">
+          <p className="mt-4 leading-7 text-black/65 sm:leading-8">
             {getLocalizedText(project.outcome, locale)}
           </p>
 
@@ -41,7 +41,7 @@ export function ProjectDetailPage({ project }: { project: Project }) {
         </section>
 
         <aside className="space-y-4">
-          <div className="rounded-[28px] border border-black/8 bg-[var(--surface)] p-6">
+          <div className="rounded-[24px] border border-black/8 bg-[var(--surface)] p-5 sm:rounded-[28px] sm:p-6">
             <p className="text-sm font-medium text-black/45">
               {locale === "zh" ? "核心标签" : "Core tags"}
             </p>
@@ -57,8 +57,8 @@ export function ProjectDetailPage({ project }: { project: Project }) {
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-black/8 bg-white/80 p-6">
-            <p className="display-font text-2xl">
+          <div className="rounded-[24px] border border-black/8 bg-white/80 p-5 sm:rounded-[28px] sm:p-6">
+            <p className="display-font text-xl sm:text-2xl">
               {locale === "zh" ? "下一步可接入" : "Ready to plug in next"}
             </p>
             <ul className="mt-4 space-y-3 text-black/65">
@@ -68,7 +68,7 @@ export function ProjectDetailPage({ project }: { project: Project }) {
             </ul>
             <Link
               href="/chat"
-              className="mt-5 inline-flex rounded-full border border-black/10 px-4 py-2 text-sm font-medium hover:bg-black/5"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full border border-black/10 px-4 py-2 text-sm font-medium hover:bg-black/5 sm:w-auto"
             >
               {locale === "zh" ? "用 AI 继续了解我" : "Continue with AI chat"}
             </Link>

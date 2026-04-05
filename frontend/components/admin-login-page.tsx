@@ -31,7 +31,7 @@ export function AdminLoginPage() {
         en: "This page sets up the interaction model so it can become a real login screen once HttpOnly cookies or session handling are added.",
       }}
     >
-      <div className="mx-auto max-w-xl rounded-[32px] border border-black/8 bg-white/82 p-8">
+      <div className="mx-auto max-w-xl rounded-[28px] border border-black/8 bg-white/82 p-6 sm:rounded-[32px] sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-4">
           <label className="block space-y-2">
             <span className="text-sm text-black/55">
@@ -56,7 +56,7 @@ export function AdminLoginPage() {
           <button
             type="submit"
             disabled={isPending}
-            className="rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
+            className="inline-flex w-full items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
           >
             {isPending
               ? locale === "zh"
@@ -68,7 +68,7 @@ export function AdminLoginPage() {
           </button>
         </form>
 
-        <p className="mt-5 text-sm leading-7 text-black/55">
+        <p className="text-safe-wrap mt-5 text-sm leading-7 text-black/55">
           {feedback ??
             (locale === "zh"
               ? `预期后端入口：${AUTH_ENDPOINT}/auth/login`

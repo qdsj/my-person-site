@@ -17,11 +17,11 @@ export function ProjectsPage() {
         en: "Projects are the persuasion layer of the site. They show your role, your output, and the impact behind the work while feeding reliable facts into the AI experience.",
       }}
     >
-      <div className="space-y-6">
+      <div className="space-y-5 sm:space-y-6">
         {projects.map((project, index) => (
           <article
             key={project.slug}
-            className="animated-rise rounded-[28px] border border-black/8 bg-white/78 p-7"
+            className="animated-rise rounded-[24px] border border-black/8 bg-white/78 p-5 sm:rounded-[28px] sm:p-7"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
@@ -29,10 +29,10 @@ export function ProjectsPage() {
                 <p className="text-sm uppercase tracking-[0.18em] text-black/45">
                   {project.year}
                 </p>
-                <h2 className="display-font text-3xl">
+                <h2 className="display-font text-2xl sm:text-3xl">
                   {getLocalizedText(project.title, locale)}
                 </h2>
-                <p className="max-w-3xl leading-8 text-black/65">
+                <p className="max-w-3xl leading-7 text-black/65 sm:leading-8">
                   {getLocalizedText(project.summary, locale)}
                 </p>
               </div>
@@ -61,16 +61,16 @@ export function ProjectsPage() {
                   ))}
                 </ul>
               </div>
-              <div className="rounded-[24px] border border-dashed border-black/12 bg-[var(--surface)] p-5">
+              <div className="rounded-[22px] border border-dashed border-black/12 bg-[var(--surface)] p-4 sm:rounded-[24px] sm:p-5">
                 <p className="text-sm font-medium text-black/50">
                   {locale === "zh" ? "结果" : "Outcome"}
                 </p>
-                <p className="mt-3 leading-8 text-black/65">
+                <p className="mt-3 leading-7 text-black/65 sm:leading-8">
                   {getLocalizedText(project.outcome, locale)}
                 </p>
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="mt-5 inline-flex rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white"
+                  className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white sm:w-auto"
                 >
                   {locale === "zh" ? "进入项目详情" : "Open project detail"}
                 </Link>

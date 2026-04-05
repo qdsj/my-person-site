@@ -16,14 +16,14 @@ export function MediaPage() {
         en: "The media page previews how public-facing media will look once object storage is connected, including image cards, video entries, covers, and summaries.",
       }}
     >
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
         {mediaItems.map((item, index) => (
           <article
             key={item.id}
-            className="animated-rise rounded-[28px] border border-black/8 bg-white/80 p-6"
+            className="animated-rise rounded-[24px] border border-black/8 bg-white/80 p-5 sm:rounded-[28px] sm:p-6"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
-            <div className="rounded-[22px] bg-gradient-to-br from-[rgba(29,107,86,0.12)] via-white to-[rgba(180,92,61,0.16)] p-5">
+            <div className="rounded-[20px] bg-gradient-to-br from-[rgba(29,107,86,0.12)] via-white to-[rgba(180,92,61,0.16)] p-4 sm:rounded-[22px] sm:p-5">
               <p className="text-xs uppercase tracking-[0.22em] text-black/45">
                 {item.kind === "video"
                   ? locale === "zh"
@@ -33,14 +33,14 @@ export function MediaPage() {
                     ? "图片"
                     : "Image"}
               </p>
-              <h2 className="display-font mt-3 text-2xl">
+              <h2 className="display-font mt-3 text-xl sm:text-2xl">
                 {getLocalizedText(item.title, locale)}
               </h2>
-              <p className="mt-3 min-h-28 leading-7 text-black/65">
+              <p className="mt-3 min-h-0 leading-7 text-black/65 md:min-h-28">
                 {getLocalizedText(item.description, locale)}
               </p>
             </div>
-            <div className="mt-5 flex items-center justify-between text-sm text-black/55">
+            <div className="text-safe-wrap mt-5 flex flex-col items-start gap-2 text-sm text-black/55 sm:flex-row sm:items-center sm:justify-between">
               <span>{item.format}</span>
               <span>{item.duration ?? (locale === "zh" ? "静态资源" : "Static asset")}</span>
             </div>
