@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useLanguage } from "@/components/language-provider";
-import { SiteShell } from "@/components/site-shell";
+import { useLanguage } from "@/components/shared/language-provider";
+import { SiteShell } from "@/components/shared/site-shell";
 import { getLocalizedText, type Project } from "@/lib/site-content";
 
 export function ProjectDetailPage({ project }: { project: Project }) {

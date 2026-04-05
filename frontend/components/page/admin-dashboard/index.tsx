@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { SiteShell } from "@/components/site-shell";
-import { useLanguage } from "@/components/language-provider";
+import { SiteShell } from "@/components/shared/site-shell";
+import { useLanguage } from "@/components/shared/language-provider";
 import { adminModules, getLocalizedText } from "@/lib/site-content";
 
 export function AdminDashboardPage() {

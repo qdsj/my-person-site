@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { SiteShell } from "@/components/site-shell";
-import { useLanguage } from "@/components/language-provider";
+import { SiteShell } from "@/components/shared/site-shell";
+import { useLanguage } from "@/components/shared/language-provider";
 
 const AUTH_ENDPOINT = process.env.NEXT_PUBLIC_API_BASE_PATH ?? "/api/v1";
 

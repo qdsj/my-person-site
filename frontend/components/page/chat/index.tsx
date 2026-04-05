@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { SiteShell } from "@/components/site-shell";
-import { useLanguage } from "@/components/language-provider";
+import { SiteShell } from "@/components/shared/site-shell";
+import { useLanguage } from "@/components/shared/language-provider";
 import { chatPrompts, getLocalizedText } from "@/lib/site-content";
 
 type Message = {

@@ -2,7 +2,9 @@ import dayjs from "dayjs";
 import Script from "next/script";
 
 const rawBuildTime = process.env.NEXT_PUBLIC_BUILD_TIME ?? "";
-const formattedBuildTime = rawBuildTime ? dayjs(rawBuildTime).format("YYYY-MM-DD HH:mm:ss") : "";
+const formattedBuildTime = rawBuildTime
+  ? dayjs(rawBuildTime).format("YYYY年MM月DD日 HH:mm:ss")
+  : "";
 
 const buildTimeScript = `
   (() => {
@@ -15,9 +17,9 @@ const buildTimeScript = `
 `;
 
 export function BuildTimeScript() {
-	return (
-		<Script id='project-build-time' strategy='afterInteractive'>
-			{buildTimeScript}
-		</Script>
-	);
+  return (
+    <Script id="project-build-time" strategy="afterInteractive">
+      {buildTimeScript}
+    </Script>
+  );
 }

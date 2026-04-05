@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLanguage } from "@/components/language-provider";
+import { useLanguage } from "@/components/shared/language-provider";
 import { getLocalizedText, navItems, type LocalizedText } from "@/lib/site-content";
 
 type SiteShellProps = {

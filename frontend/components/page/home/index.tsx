@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SiteShell } from "@/components/site-shell";
+import { SiteShell } from "@/components/shared/site-shell";
 import {
   capabilitySections,
   featuredHighlights,
@@ -11,7 +11,7 @@ import {
   profile,
   projects,
 } from "@/lib/site-content";
-import { useLanguage } from "@/components/language-provider";
+import { useLanguage } from "@/components/shared/language-provider";
 
 export function HomePage() {
   const { locale } = useLanguage();

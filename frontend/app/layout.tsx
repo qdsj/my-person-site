@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { BuildTimeScript } from "@/components/build-time-script";
-import { LanguageProvider } from "@/components/language-provider";
+import { BuildTimeScript } from "@/components/shared/build-time-script";
+import { LanguageProvider } from "@/components/shared/language-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {

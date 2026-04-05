@@ -1,7 +1,7 @@
 "use client";
 
-import { SiteShell } from "@/components/site-shell";
-import { useLanguage } from "@/components/language-provider";
+import { SiteShell } from "@/components/shared/site-shell";
+import { useLanguage } from "@/components/shared/language-provider";
 import { getLocalizedText, mediaItems } from "@/lib/site-content";
 
 export function MediaPage() {
