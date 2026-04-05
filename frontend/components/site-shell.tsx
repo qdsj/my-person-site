@@ -24,23 +24,57 @@ export function SiteShell({
   return (
     <div className="page-shell">
       <div className="page-frame">
-        <header className="border-b border-black/8 px-4 py-4 sm:px-6 sm:py-5 md:px-10">
-          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+        <header className="border-b border-black/8 px-4 py-4 sm:px-6 sm:py-5 md:px-8 lg:px-10">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-2">
-              <Link
-                href="/"
-                className="display-font text-[2rem] leading-none text-[var(--accent-strong)] sm:text-3xl"
-              >
-                Chengtong Xue
-              </Link>
+              <div className="flex items-start justify-between gap-3">
+                <Link
+                  href="/"
+                  className="display-font text-[2rem] leading-none text-[var(--accent-strong)] sm:text-3xl"
+                >
+                  Chengtong Xue
+                </Link>
+                <div className="flex shrink-0 rounded-full border border-black/10 bg-white/70 p-1 text-sm lg:hidden">
+                  {(["zh", "en"] as const).map((option) => (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => setLocale(option)}
+                      className={`min-h-9 rounded-full px-3 py-1.5 text-xs transition sm:min-h-10 sm:px-3.5 sm:py-2 sm:text-sm ${
+                        locale === option
+                          ? "bg-[var(--secondary)] text-white"
+                          : "text-black/60 hover:bg-black/5"
+                      }`}
+                    >
+                      {option.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <p className="max-w-2xl text-sm leading-6 text-black/60">
                 {locale === "zh"
                   ? "个人品牌站 / 作品展示 / AI 分身 / 单管理员后台"
                   : "Personal brand / portfolio / AI persona / single-admin CMS"}
               </p>
             </div>
-            <div className="flex w-full flex-col gap-3 md:w-auto md:items-end">
-              <nav className="grid w-full grid-cols-3 gap-2 rounded-[24px] border border-black/10 bg-white/70 p-2 md:flex md:w-auto md:flex-wrap md:justify-end md:rounded-full md:p-1">
+            <div className="flex w-full flex-col gap-3 lg:w-auto lg:items-end">
+              <div className="hidden rounded-full border border-black/10 bg-white/70 p-1 text-sm lg:flex lg:self-end">
+                {(["zh", "en"] as const).map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setLocale(option)}
+                    className={`min-h-9 rounded-full px-3 py-1.5 text-xs transition sm:min-h-10 sm:px-3.5 sm:py-2 sm:text-sm ${
+                      locale === option
+                        ? "bg-[var(--secondary)] text-white"
+                        : "text-black/60 hover:bg-black/5"
+                    }`}
+                  >
+                    {option.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+              <nav className="grid w-full grid-cols-3 gap-2 rounded-[24px] border border-black/10 bg-white/70 p-2 lg:flex lg:w-auto lg:flex-wrap lg:justify-end lg:rounded-full lg:p-1">
                 {navItems.map((item) => {
                   const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
                   return (
@@ -58,22 +92,6 @@ export function SiteShell({
                   );
                 })}
               </nav>
-              <div className="flex self-start rounded-full border border-black/10 bg-white/70 p-1 text-sm md:self-end">
-                {(["zh", "en"] as const).map((option) => (
-                  <button
-                    key={option}
-                    type="button"
-                    onClick={() => setLocale(option)}
-                    className={`min-h-11 rounded-full px-4 py-2 transition ${
-                      locale === option
-                        ? "bg-[var(--secondary)] text-white"
-                        : "text-black/60 hover:bg-black/5"
-                    }`}
-                  >
-                    {option.toUpperCase()}
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
         </header>
