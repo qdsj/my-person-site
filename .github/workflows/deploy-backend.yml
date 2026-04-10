@@ -33,8 +33,10 @@ jobs:
 
                   if [ "$environment" = "prod" ]; then
                     port="4105"
+                    frontendOrigin="https://prod.qdsj.top"
                   else
                     port="3105"
+                    frontendOrigin="https://dev.qdsj.top"
                   fi
 
                   dockerName="my-person-site-backend-${environment}"
@@ -48,6 +50,7 @@ jobs:
                   echo "port=${port}" >> "$GITHUB_OUTPUT"
                   echo "dockerName=${dockerName}" >> "$GITHUB_OUTPUT"
                   echo "image=${image}" >> "$GITHUB_OUTPUT"
+                  echo "frontendOrigin=${frontendOrigin}" >> "$GITHUB_OUTPUT"
 
             - name: Login to Docker Hub
               uses: docker/login-action@v3
@@ -72,6 +75,7 @@ jobs:
                   image: ${{ steps.vars.outputs.image }}
                   tag: ${{ steps.vars.outputs.tag }}
                   port: ${{ steps.vars.outputs.port }}
+                  frontendOrigin: ${{ steps.vars.outputs.frontendOrigin }}
               uses: appleboy/ssh-action@master
               with:
                   host: ${{ secrets.SERVER_HOST }}
@@ -83,7 +87,14 @@ jobs:
                       docker rm ${{ env.dockerName }} || true
                       docker run -d --name ${{ env.dockerName }} \
                         --restart unless-stopped \
+                        --network baota_net \
                         -p ${{ env.port }}:${{ env.port }} \
                         -e NODE_ENV=production \
                         -e PORT=${{ env.port }} \
+                        -e FRONTEND_ORIGIN=${{ env.frontendOrigin }} \
+                        -e PERSON_SITE_DB_HOST=mysql_F \
+                        -e PERSON_SITE_DB_PORT=3306 \
+                        -e PERSON_SITE_DB_NAME=person-site \
+                        -e PERSON_SITE_DB_USER=personsite \
+                        -e PERSON_SITE_DB_PASSWORD=${{ secrets.PERSON_SITE_DB_PASSWORD }} \
                         ${{ env.image }}:${{ env.tag }}
