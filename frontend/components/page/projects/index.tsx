@@ -1,15 +1,14 @@
-"use client";
-
 import Link from "next/link";
 import { SiteShell } from "@/components/shared/site-shell";
-import { useLanguage } from "@/components/shared/language-provider";
-import { getLocalizedText, projects } from "@/lib/site-content";
+import { getLocalizedHref } from "@/lib/i18n";
+import { getLocalizedText, projects, type Locale } from "@/lib/site-content";
 
-export function ProjectsPage() {
-  const { locale } = useLanguage();
-
+export function ProjectsPage({ locale }: { locale: Locale }) {
   return (
     <SiteShell
+      locale={locale}
+      currentPath="/projects"
+      activeNav="/projects"
       kicker={{ zh: "项目与成果", en: "Projects and outcomes" }}
       title={{ zh: "这些项目定义了我做前端和 AI 产品的方式。", en: "These projects define how I build frontend systems and AI products." }}
       description={{
@@ -69,7 +68,7 @@ export function ProjectsPage() {
                   {getLocalizedText(project.outcome, locale)}
                 </p>
                 <Link
-                  href={`/projects/${project.slug}`}
+                  href={getLocalizedHref(locale, `/projects/${project.slug}`)}
                   className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white sm:w-auto"
                 >
                   {locale === "zh" ? "进入项目详情" : "Open project detail"}

@@ -1,14 +1,12 @@
-"use client";
-
 import { SiteShell } from "@/components/shared/site-shell";
-import { useLanguage } from "@/components/shared/language-provider";
-import { getLocalizedText, mediaItems } from "@/lib/site-content";
+import { getLocalizedText, mediaItems, type Locale } from "@/lib/site-content";
 
-export function MediaPage() {
-  const { locale } = useLanguage();
-
+export function MediaPage({ locale }: { locale: Locale }) {
   return (
     <SiteShell
+      locale={locale}
+      currentPath="/media"
+      activeNav="/media"
       kicker={{ zh: "图片与视频", en: "Images and video" }}
       title={{ zh: "媒体内容会把技术能力和摄影表达连接在一起。", en: "Media is where product demos and photography start to meet." }}
       description={{

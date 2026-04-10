@@ -1,11 +1,13 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useLanguage } from "@/components/shared/language-provider";
+import { getLocalizedHref } from "@/lib/i18n";
 import { getLocalizedText, navItems, type LocalizedText } from "@/lib/site-content";
+import type { Locale } from "@/lib/site-content";
 
 type SiteShellProps = {
+  locale: Locale;
+  currentPath: string;
+  activeNav?: (typeof navItems)[number]["href"];
+  showLocaleSwitcher?: boolean;
   title: LocalizedText;
   description: LocalizedText;
   kicker?: LocalizedText;
@@ -13,14 +15,15 @@ type SiteShellProps = {
 };
 
 export function SiteShell({
+  locale,
+  currentPath,
+  activeNav,
+  showLocaleSwitcher = true,
   title,
   description,
   kicker,
   children,
 }: SiteShellProps) {
-  const pathname = usePathname();
-  const { locale, setLocale } = useLanguage();
-
   return (
     <div className="page-shell">
       <div className="page-frame">
@@ -29,27 +32,28 @@ export function SiteShell({
             <div className="space-y-2">
               <div className="flex items-start justify-between gap-3">
                 <Link
-                  href="/"
+                  href={getLocalizedHref(locale)}
                   className="display-font text-[2rem] leading-none text-[var(--accent-strong)] sm:text-3xl"
                 >
                   Hao Cheng
                 </Link>
-                <div className="flex shrink-0 rounded-full border border-black/10 bg-white/70 p-1 text-sm lg:hidden">
-                  {(["zh", "en"] as const).map((option) => (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() => setLocale(option)}
-                      className={`min-h-9 rounded-full px-3 py-1.5 text-xs transition sm:min-h-10 sm:px-3.5 sm:py-2 sm:text-sm ${
-                        locale === option
-                          ? "bg-[var(--secondary)] text-white"
-                          : "text-black/60 hover:bg-black/5"
-                      }`}
-                    >
-                      {option.toUpperCase()}
-                    </button>
-                  ))}
-                </div>
+                {showLocaleSwitcher ? (
+                  <div className="flex shrink-0 rounded-full border border-black/10 bg-white/70 p-1 text-sm lg:hidden">
+                    {(["zh", "en"] as const).map((option) => (
+                      <Link
+                        key={option}
+                        href={getLocalizedHref(option, currentPath)}
+                        className={`min-h-9 rounded-full px-3 py-1.5 text-xs transition sm:min-h-10 sm:px-3.5 sm:py-2 sm:text-sm ${
+                          locale === option
+                            ? "bg-[var(--secondary)] text-white"
+                            : "text-black/60 hover:bg-black/5"
+                        }`}
+                      >
+                        {option.toUpperCase()}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
               </div>
               <p className="max-w-2xl text-sm leading-6 text-black/60">
                 {locale === "zh"
@@ -60,11 +64,11 @@ export function SiteShell({
             <div className="flex w-full flex-col gap-3 lg:w-auto lg:flex-row lg:items-start lg:justify-end">
               <nav className="grid w-full grid-cols-3 gap-2 rounded-[24px] border border-black/10 bg-white/70 p-2 lg:w-auto lg:grid-cols-none lg:auto-cols-max lg:grid-flow-col lg:rounded-full lg:p-1">
                 {navItems.map((item) => {
-                  const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                  const active = activeNav === item.href;
                   return (
                     <Link
                       key={item.href}
-                      href={item.href}
+                      href={getLocalizedHref(locale, item.href)}
                       className={`flex min-h-11 items-center justify-center rounded-full px-3 py-2 text-center text-sm leading-5 transition sm:px-4 ${
                         active
                           ? "bg-[var(--accent)] text-white"
@@ -76,22 +80,23 @@ export function SiteShell({
                   );
                 })}
               </nav>
-              <div className="hidden rounded-full border border-black/10 bg-white/70 p-1 text-sm lg:flex lg:shrink-0">
-                {(["zh", "en"] as const).map((option) => (
-                  <button
-                    key={option}
-                    type="button"
-                    onClick={() => setLocale(option)}
-                    className={`min-h-9 rounded-full px-3 py-1.5 text-xs transition sm:min-h-10 sm:px-3.5 sm:py-2 sm:text-sm ${
-                      locale === option
-                        ? "bg-[var(--secondary)] text-white"
-                        : "text-black/60 hover:bg-black/5"
-                    }`}
-                  >
-                    {option.toUpperCase()}
-                  </button>
-                ))}
-              </div>
+              {showLocaleSwitcher ? (
+                <div className="hidden rounded-full border border-black/10 bg-white/70 p-1 text-sm lg:flex lg:shrink-0">
+                  {(["zh", "en"] as const).map((option) => (
+                    <Link
+                      key={option}
+                      href={getLocalizedHref(option, currentPath)}
+                      className={`min-h-9 rounded-full px-3 py-1.5 text-xs transition sm:min-h-10 sm:px-3.5 sm:py-2 sm:text-sm ${
+                        locale === option
+                          ? "bg-[var(--secondary)] text-white"
+                          : "text-black/60 hover:bg-black/5"
+                      }`}
+                    >
+                      {option.toUpperCase()}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </div>
         </header>

@@ -1,14 +1,17 @@
-"use client";
-
 import { SiteShell } from "@/components/shared/site-shell";
-import { useLanguage } from "@/components/shared/language-provider";
-import { collaborationNotes, contactPoints, getLocalizedText } from "@/lib/site-content";
+import {
+  collaborationNotes,
+  contactPoints,
+  getLocalizedText,
+  type Locale,
+} from "@/lib/site-content";
 
-export function ContactPage() {
-  const { locale } = useLanguage();
-
+export function ContactPage({ locale }: { locale: Locale }) {
   return (
     <SiteShell
+      locale={locale}
+      currentPath="/contact"
+      activeNav="/contact"
       kicker={{ zh: "联系与合作", en: "Contact and collaboration" }}
       title={{ zh: "如果要合作，这一页应该让人快速知道怎么联系你。", en: "If someone wants to collaborate, this page should make the next step obvious." }}
       description={{

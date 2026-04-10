@@ -1,7 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import { SiteShell } from "@/components/shared/site-shell";
+import { getLocalizedHref } from "@/lib/i18n";
 import {
   capabilitySections,
   featuredHighlights,
@@ -10,14 +9,15 @@ import {
   journey,
   profile,
   projects,
+  type Locale,
 } from "@/lib/site-content";
-import { useLanguage } from "@/components/shared/language-provider";
 
-export function HomePage() {
-  const { locale } = useLanguage();
-
+export function HomePage({ locale }: { locale: Locale }) {
   return (
     <SiteShell
+      locale={locale}
+      currentPath="/"
+      activeNav="/"
       kicker={hero.eyebrow}
       title={hero.title}
       description={hero.description}
@@ -36,13 +36,13 @@ export function HomePage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                href="/chat"
+                href={getLocalizedHref(locale, "/chat")}
                 className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white transition hover:bg-[var(--accent-strong)]"
               >
                 {getLocalizedText(hero.primaryCta, locale)}
               </Link>
               <Link
-                href="/projects"
+                href={getLocalizedHref(locale, "/projects")}
                 className="inline-flex items-center justify-center rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-black/75 transition hover:bg-black/5"
               >
                 {getLocalizedText(hero.secondaryCta, locale)}
@@ -113,7 +113,7 @@ export function HomePage() {
               {getLocalizedText(project.outcome, locale)}
             </p>
             <Link
-              href={`/projects/${project.slug}`}
+              href={getLocalizedHref(locale, `/projects/${project.slug}`)}
               className="mt-6 inline-flex items-center justify-center rounded-full border border-black/10 px-4 py-2 text-sm font-medium hover:bg-black/5"
             >
               {locale === "zh" ? "查看详情" : "View details"}

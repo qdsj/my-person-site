@@ -1,15 +1,20 @@
-"use client";
-
 import Link from "next/link";
-import { useLanguage } from "@/components/shared/language-provider";
 import { SiteShell } from "@/components/shared/site-shell";
-import { getLocalizedText, type Project } from "@/lib/site-content";
+import { getLocalizedHref } from "@/lib/i18n";
+import { getLocalizedText, type Locale, type Project } from "@/lib/site-content";
 
-export function ProjectDetailPage({ project }: { project: Project }) {
-  const { locale } = useLanguage();
-
+export function ProjectDetailPage({
+  locale,
+  project,
+}: {
+  locale: Locale;
+  project: Project;
+}) {
   return (
     <SiteShell
+      locale={locale}
+      currentPath={`/projects/${project.slug}`}
+      activeNav="/projects"
       kicker={{ zh: "项目详情", en: "Project detail" }}
       title={project.title}
       description={project.summary}
@@ -67,7 +72,7 @@ export function ProjectDetailPage({ project }: { project: Project }) {
               <li>{locale === "zh" ? "这些实践也能成为 AI 知识库里的可靠事实来源" : "These projects also become reliable source material for the AI knowledge base"}</li>
             </ul>
             <Link
-              href="/chat"
+              href={getLocalizedHref(locale, "/chat")}
               className="mt-5 inline-flex w-full items-center justify-center rounded-full border border-black/10 px-4 py-2 text-sm font-medium hover:bg-black/5 sm:w-auto"
             >
               {locale === "zh" ? "用 AI 继续了解我" : "Continue with AI chat"}

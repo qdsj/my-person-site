@@ -1,15 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import { SiteShell } from "@/components/shared/site-shell";
-import { useLanguage } from "@/components/shared/language-provider";
-import { adminModules, getLocalizedText } from "@/lib/site-content";
+import { getApiUrl } from "@/lib/api";
+import { getLocalizedHref } from "@/lib/i18n";
+import { adminModules, getLocalizedText, type Locale } from "@/lib/site-content";
 
-export function AdminDashboardPage() {
-  const { locale } = useLanguage();
-
+export function AdminDashboardPage({ locale }: { locale: Locale }) {
   return (
     <SiteShell
+      locale={locale}
+      currentPath="/admin"
+      activeNav="/admin"
       kicker={{ zh: "后台控制台", en: "Admin console" }}
       title={{ zh: "把内容维护变成一个稳定流程。", en: "Turn content maintenance into a stable workflow." }}
       description={{
@@ -41,13 +41,17 @@ export function AdminDashboardPage() {
               {locale === "zh" ? "后台能力边界" : "Admin boundaries"}
             </p>
             <ul className="text-safe-wrap mt-4 space-y-3 leading-7 text-black/65">
-              <li>{locale === "zh" ? "登录由 NestJS `/api/v1/auth/login` 处理。" : "Login is handled by NestJS `/api/v1/auth/login`."}</li>
+              <li>
+                {locale === "zh"
+                  ? `登录由 NestJS \`${getApiUrl("/auth/login")}\` 处理。`
+                  : `Login is handled by NestJS \`${getApiUrl("/auth/login")}\`.`}
+              </li>
               <li>{locale === "zh" ? "上传通过对象存储直传或经后端签名上传。" : "Uploads go through direct object storage upload or signed backend upload."}</li>
               <li>{locale === "zh" ? "知识库发布后触发切分、Embedding 和 reindex。" : "Publishing knowledge content triggers chunking, embeddings, and reindexing."}</li>
             </ul>
           </div>
           <Link
-            href="/admin/login"
+            href={getLocalizedHref(locale, "/admin/login")}
             className="inline-flex w-full items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white sm:w-auto"
           >
             {locale === "zh" ? "前往登录页" : "Open login page"}
