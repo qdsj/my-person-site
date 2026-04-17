@@ -1,10 +1,11 @@
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";
 
 const config = {
-  host:
+  host: normalizeHost(
     process.env.MILVUS_REMOTE_HOST ??
-    process.env.MILVUS_HOST ??
-    "106.14.161.76",
+      process.env.MILVUS_HOST ??
+      "106.14.161.76",
+  ),
   port:
     process.env.MILVUS_REMOTE_PORT ??
     process.env.MILVUS_PORT ??
@@ -20,6 +21,10 @@ const config = {
 };
 
 const address = `${config.host}:${config.port}`;
+
+function normalizeHost(value) {
+  return value.replace(/^[a-z]+:\/\//i, "").replace(/\/+$/g, "");
+}
 
 const client = new MilvusClient({
   address,
