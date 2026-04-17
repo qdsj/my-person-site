@@ -6,7 +6,8 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "build": "nest build",
-    "lint": "eslint \"src/**/*.ts\""
+    "lint": "eslint \"src/**/*.ts\"",
+    "milvus:test-remote": "node ./scripts/test-remote-milvus.mjs"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
@@ -14,6 +15,7 @@
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
     "@nestjs/typeorm": "^11.0.1",
+    "@zilliz/milvus2-sdk-node": "^2.6.13",
     "mysql2": "^3.20.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",

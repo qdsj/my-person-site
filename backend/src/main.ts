@@ -5,9 +5,13 @@ import { AppModule } from "./app.module";
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
 	const configService = app.get(ConfigService);
+	const nodeEnv = configService.get<string>("NODE_ENV") ?? process.env.NODE_ENV;
+	const isLocalDevelopment = nodeEnv !== "production";
 
 	app.enableCors({
-		origin: configService.get<string>("FRONTEND_ORIGIN") ?? true,
+		origin: isLocalDevelopment
+			? true
+			: (configService.get<string>("FRONTEND_ORIGIN") ?? false),
 		credentials: true,
 	});
 
