@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { defaultLocale, getPreferredLocale, hasLocale } from "@/lib/i18n";
 
-const PASSTHROUGH_PREFIXES = ["/api", "/debug", "/demo", "/_next"];
+const PASSTHROUGH_PREFIXES = ["/api", "/debug", "/demo", "/server", "/_next"];
 const PASSTHROUGH_FILES = new Set(["/favicon.ico", "/robots.txt", "/sitemap.xml"]);
 
 export function proxy(request: NextRequest) {
