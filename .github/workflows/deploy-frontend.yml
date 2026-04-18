@@ -85,7 +85,6 @@ jobs:
                       docker stop ${{ env.dockerName }} || true
                       docker rm ${{ env.dockerName }} || true
                       docker run -d --name ${{ env.dockerName }} \
-                        --restart unless-stopped \
                         -p ${{ env.port }}:${{ env.port }} \
                         -e NODE_ENV=production \
                         -e HOSTNAME=0.0.0.0 \

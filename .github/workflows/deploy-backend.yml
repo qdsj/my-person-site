@@ -86,7 +86,6 @@ jobs:
                       docker stop ${{ env.dockerName }} || true
                       docker rm ${{ env.dockerName }} || true
                       docker run -d --name ${{ env.dockerName }} \
-                        --restart unless-stopped \
                         --network baota_net \
                         -p ${{ env.port }}:${{ env.port }} \
                         -e NODE_ENV=production \
