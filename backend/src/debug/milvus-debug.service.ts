@@ -250,7 +250,7 @@ export class MilvusDebugService {
 	}
 
 	private getMilvusConfig(): MilvusConfig {
-		const host = this.configService.get<string>("MILVUS_HOST") ?? "127.0.0.1";
+		const host = this.normalizeMilvusHost(this.configService.get<string>("MILVUS_HOST") ?? "127.0.0.1");
 		const port = Number(this.configService.get<string>("MILVUS_PORT") ?? "8999");
 		const username = this.configService.get<string>("MILVUS_TEST_USERNAME") ?? "test_user";
 		const password = this.configService.get<string>("MILVUS_TEST_PASSWORD") ?? "test_user_password";
@@ -280,9 +280,22 @@ export class MilvusDebugService {
 		};
 	}
 
+	private normalizeMilvusHost(value: string) {
+		const normalized = value.replace(/^[a-z]+:\/\//i, "").replace(/\/+$/g, "");
+
+		if (!normalized) {
+			throw new ServiceUnavailableException({
+				ok: false,
+				message: "MILVUS_HOST is invalid.",
+				errorCode: "MILVUS_INVALID_HOST",
+			});
+		}
+
+		return normalized;
+	}
+
 	private async withMilvusClient<T>(callback: (client: MilvusClient, config: MilvusConfig) => Promise<T>) {
 		const config = this.getMilvusConfig();
-		console.log("+++++Connecting to Milvus with config:", config);
 		const client = new MilvusClient({
 			address: config.address,
 			username: config.username,
@@ -367,6 +380,8 @@ export class MilvusDebugService {
 
 		this.assertMilvusStatus(indexList.status, "Failed to inspect Milvus indexes.");
 
+		console.log("Existing Milvus indexes:", indexList.indexes);
+
 		if (indexList.indexes.includes(MILVUS_INDEX_NAME)) {
 			return false;
 		}
@@ -389,7 +404,6 @@ export class MilvusDebugService {
 
 		const result = await client.loadCollection({
 			collection_name: collectionName,
-			refresh: true,
 		});
 
 		this.assertMilvusStatus(result, "Failed to load Milvus collection.");

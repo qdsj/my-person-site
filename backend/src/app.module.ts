@@ -6,6 +6,7 @@ import { DatabaseModule } from "./database/database.module";
 import { DebugModule } from "./debug/debug.module";
 import { KnowledgeBaseModule } from "./knowledge-base/knowledge-base.module";
 import { MediaModule } from "./media/media.module";
+import { OssModule } from "./oss/oss.module";
 import { ProfileModule } from "./profile/profile.module";
 import { ProjectsModule } from "./projects/projects.module";
 import { UploadModule } from "./upload/upload.module";
@@ -19,6 +20,7 @@ import { UploadModule } from "./upload/upload.module";
     ProfileModule,
     ProjectsModule,
     MediaModule,
+    OssModule,
     KnowledgeBaseModule,
     ChatModule,
     UploadModule,

@@ -1,4 +1,4 @@
-export type DemoPanel = "mysql-connection" | "user-table" | "milvus-debug";
+export type DemoPanel = "mysql-connection" | "user-table" | "milvus-debug" | "oss-upload";
 
 export type ApiErrorState = {
   statusCode: number;
@@ -100,6 +100,33 @@ export type MilvusFailure = {
   ok: false;
   message: string;
   errorCode?: string | number;
+};
+
+export type OssTempSignatureData = {
+  policy: string;
+  signature: string;
+  ossAccessKeyId: string;
+  host: string;
+};
+
+export type OssTempSignatureSuccess = {
+  status: number;
+  message: string;
+  data: OssTempSignatureData;
+};
+
+export type OssTempSignatureFailure = {
+  status: number;
+  message: string;
+  data: null;
+};
+
+export type OssDirectUploadResult = {
+  ok: true;
+  key: string;
+  host: string;
+  url: string;
+  statusCode: number;
 };
 
 export const DEFAULT_MILVUS_EDITOR = {

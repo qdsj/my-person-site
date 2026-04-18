@@ -26,6 +26,7 @@ export function DemoSelector({
           <option value="mysql-connection">MySQL 连接测试</option>
           <option value="user-table">User 表测试</option>
           <option value="milvus-debug">Milvus 调试</option>
+          <option value="oss-upload">OSS 上传测试</option>
         </select>
       </label>
     </section>

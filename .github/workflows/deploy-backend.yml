@@ -96,4 +96,7 @@ jobs:
                         -e PERSON_SITE_DB_NAME=person-site \
                         -e PERSON_SITE_DB_USER=${{ secrets.SQL_PERSON_SITE_USER_NAME }} \
                         -e PERSON_SITE_DB_PASSWORD=${{ secrets.SQL_PERSON_SITE_KEY }} \
+                        -e OSS_ACCESS_KEY=${{ secrets.OSS_ACCESS_KEY_PERSONSITE }} \
+                        -e OSS_ACCESS_KEY_SECRET=${{ secrets.OSS_ACCESS_KEY_SECRET_PERSONSITE }} \
+                        -e BUCKET_NAME=${{ secrets.OSS_BUCKET_NAME_PERSONSITE }} \
                         ${{ env.image }}:${{ env.tag }}

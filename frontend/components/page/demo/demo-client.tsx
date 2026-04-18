@@ -5,6 +5,7 @@ import { DemoSelector } from "./components/demo-selector";
 import type { DemoPanel } from "./demo-types";
 import { MilvusDebugPanel } from "./panels/milvus-debug-panel";
 import { MysqlConnectionPanel } from "./panels/mysql-connection-panel";
+import { OssUploadPanel } from "./panels/oss-upload-panel";
 import { UserTablePanel } from "./panels/user-table-panel";
 
 export function DemoClient() {
@@ -22,7 +23,9 @@ export function DemoClient() {
 							? "检查后端是否能成功连接 `person-site` 数据库。"
 							: panel === "user-table"
 								? "通过后端读写 `user` 测试表，验证最小可用数据流。"
-								: "通过后端调试接口验证 Milvus 的连接、collection 初始化、增删改查和向量搜索。"}
+								: panel === "milvus-debug"
+									? "通过后端调试接口验证 Milvus 的连接、collection 初始化、增删改查和向量搜索。"
+									: "测试后端 OSS 上传接口，覆盖 AI 常见可解析文件类型和临时签名能力。"}
 					</p>
 				</section>
 			</aside>
@@ -31,6 +34,7 @@ export function DemoClient() {
 				{panel === "mysql-connection" ? <MysqlConnectionPanel /> : null}
 				{panel === "user-table" ? <UserTablePanel /> : null}
 				{panel === "milvus-debug" ? <MilvusDebugPanel /> : null}
+				{panel === "oss-upload" ? <OssUploadPanel /> : null}
 			</section>
 		</div>
 	);
