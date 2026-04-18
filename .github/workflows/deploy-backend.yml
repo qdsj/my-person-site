@@ -94,6 +94,6 @@ jobs:
                         -e PERSON_SITE_DB_HOST=mysql_F \
                         -e PERSON_SITE_DB_PORT=3306 \
                         -e PERSON_SITE_DB_NAME=person-site \
-                        -e PERSON_SITE_DB_USER=personsite \
-                        -e PERSON_SITE_DB_PASSWORD=${{ secrets.PERSON_SITE_DB_PASSWORD }} \
+                        -e PERSON_SITE_DB_USER=${{ secrets.SQL_PERSON_SITE_USER_NAME }} \
+                        -e PERSON_SITE_DB_PASSWORD=${{ secrets.SQL_PERSON_SITE_KEY }} \
                         ${{ env.image }}:${{ env.tag }}
