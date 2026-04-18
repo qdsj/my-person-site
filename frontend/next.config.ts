@@ -6,6 +6,9 @@ const isDev = process.env.NODE_ENV === "development";
 const appBasePath = isDev ? "" : "/person-site";
 const apiBasePath = "/server";
 const baseUrl = "/";
+const defaultOssPreviewPrefix =
+	(isDev ? "https://dev.qdsj.top" : "https://prod.qdsj.top") + "/aliyun/oss/person-site";
+const ossPreviewPrefix = process.env.OSS_PREVIEW_PREFIX ?? defaultOssPreviewPrefix;
 
 const nextConfig: NextConfig = {
 	output: "standalone",
@@ -28,6 +31,7 @@ const nextConfig: NextConfig = {
 		NEXT_PUBLIC_BUILD_TIME: buildTime,
 		NEXT_PUBLIC_BASE_URL: baseUrl,
 		NEXT_PUBLIC_API_BASE_PATH: apiBasePath,
+		OSS_PREVIEW_PREFIX: ossPreviewPrefix,
 	},
 };
 

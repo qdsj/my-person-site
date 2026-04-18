@@ -125,7 +125,10 @@ export type OssDirectUploadResult = {
   ok: true;
   key: string;
   host: string;
-  url: string;
+  directUrl: string;
+  previewUrl: string;
+  extension: string;
+  isImage: boolean;
   statusCode: number;
 };
 
