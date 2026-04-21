@@ -230,7 +230,7 @@ export class MilvusDebugService {
 				anns_field: MILVUS_VECTOR_FIELD,
 				data: vector,
 				limit,
-				metric_type: "L2",
+				metric_type: "COSINE",
 				params: {
 					nprobe: 10,
 				},
@@ -391,7 +391,7 @@ export class MilvusDebugService {
 			field_name: MILVUS_VECTOR_FIELD,
 			index_name: MILVUS_INDEX_NAME,
 			index_type: "AUTOINDEX",
-			metric_type: "L2",
+			metric_type: "COSINE",
 		});
 
 		this.assertMilvusStatus(createIndex, "Failed to create Milvus index.");
