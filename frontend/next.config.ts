@@ -4,8 +4,8 @@ import type { NextConfig } from "next";
 const buildTime = new Date().toISOString();
 const isDev = process.env.NODE_ENV === "development";
 const appBasePath = isDev ? "" : "/person-site";
-const apiBasePath = "/server";
-const baseUrl = isDev ? "/" : "/person-site";
+const apiBasePath = isDev ? "/server" : `${appBasePath}/server`;
+const baseUrl = "/";
 const defaultOssPreviewPrefix = (isDev ? "https://dev.qdsj.top" : "https://prod.qdsj.top") + "/aliyun/oss/person-site";
 const ossPreviewPrefix = process.env.OSS_PREVIEW_PREFIX ?? defaultOssPreviewPrefix;
 
